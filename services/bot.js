@@ -1,6 +1,8 @@
 // @CompilexBot [t.me/CompilexBot]
 
 const { Telegraf } = require('telegraf');
+const path = require('path');
+const fs = require('fs');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
@@ -37,22 +39,22 @@ bot.command('template', ctx => {
 
 bot.action('C', ctx => {
     ctx.answerCbQuery();
-    ctx.reply('This is the template for C');
+    ctx.reply(fs.readFileSync(path.join(__dirname, '..', 'data', 'template.c'), { encoding: 'utf-8' }));
 });
 
 bot.action('CPP', ctx => {
     ctx.answerCbQuery();
-    ctx.reply('This is the template for C++');
+    ctx.reply(fs.readFileSync(path.join(__dirname, '..', 'data', 'template.cpp'), { encoding: 'utf-8' }));
 });
 
 bot.action('JAVA', ctx => {
     ctx.answerCbQuery();
-    ctx.reply('This is the template for Java');
+    ctx.reply(fs.readFileSync(path.join(__dirname, '..', 'data', 'template.java'), { encoding: 'utf-8' }));
 });
 
 bot.action('PY', ctx => {
     ctx.answerCbQuery();
-    ctx.reply('This is the template for Python');
+    ctx.reply(fs.readFileSync(path.join(__dirname, '..', 'data', 'template.py'), { encoding: 'utf-8' }));
 });
 
 module.exports = bot;
