@@ -17,4 +17,56 @@ bot.command('build', ctx => {
     ctx.reply(`Build under progress`);
 });
 
+bot.command('template', ctx => {
+    ctx.reply(`Select your preferred language from the given languages`, {
+        parse_mode: 'MarkdownV2',
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    {
+                        text: 'C',
+                        callback_data: 'C'
+                    },
+                    {
+                        text: 'C++',
+                        callback_data: 'CPP'
+                    }
+                ],
+                [
+                    {
+                        text: 'Java',
+                        callback_data: 'JAVA'
+                    },
+                    {
+                        text: 'Python',
+                        callback_data: 'PY'
+                    }
+                ],
+                [
+                    {
+                        text: 'Back',
+                        callback_data: 'exit'
+                    }
+                ]
+            ]
+        }
+    });
+});
+
+bot.action('C', ctx => {
+    ctx.reply('This is the template for C');
+});
+
+bot.action('CPP', ctx => {
+    ctx.reply('This is the template for C++');
+});
+
+bot.action('JAVA', ctx => {
+    ctx.reply('This is the template for Java');
+});
+
+bot.action('PY', ctx => {
+    ctx.reply('This is the template for Python');
+});
+
 module.exports = bot;
