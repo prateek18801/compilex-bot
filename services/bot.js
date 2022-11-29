@@ -23,30 +23,12 @@ bot.command('template', ctx => {
         reply_markup: {
             inline_keyboard: [
                 [
-                    {
-                        text: 'C',
-                        callback_data: 'C'
-                    },
-                    {
-                        text: 'C++',
-                        callback_data: 'CPP'
-                    }
+                    { text: 'C', callback_data: 'C' },
+                    { text: 'C++', callback_data: 'CPP' }
                 ],
                 [
-                    {
-                        text: 'Java',
-                        callback_data: 'JAVA'
-                    },
-                    {
-                        text: 'Python',
-                        callback_data: 'PY'
-                    }
-                ],
-                [
-                    {
-                        text: 'Back',
-                        callback_data: 'exit'
-                    }
+                    { text: 'Java', callback_data: 'JAVA' },
+                    { text: 'Python', callback_data: 'PY' }
                 ]
             ]
         }
@@ -54,18 +36,22 @@ bot.command('template', ctx => {
 });
 
 bot.action('C', ctx => {
+    ctx.answerCbQuery();
     ctx.reply('This is the template for C');
 });
 
 bot.action('CPP', ctx => {
+    ctx.answerCbQuery();
     ctx.reply('This is the template for C++');
 });
 
 bot.action('JAVA', ctx => {
+    ctx.answerCbQuery();
     ctx.reply('This is the template for Java');
 });
 
 bot.action('PY', ctx => {
+    ctx.answerCbQuery();
     ctx.reply('This is the template for Python');
 });
 
