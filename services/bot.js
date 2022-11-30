@@ -1,60 +1,49 @@
 // @CompilexBot [t.me/CompilexBot]
 
 const { Telegraf } = require('telegraf');
-const path = require('path');
-const fs = require('fs');
+
+const { command, template } = require('../utils/reply');
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
+// commands
 
-bot.command('start', async ctx => {
-    ctx.reply(`This bot can help you build and run your source code\\. You can send the source file or type /help for more information\\.\n_Currently supports \\[C/C\\+\\+, Java, Python\\]_`, { parse_mode: 'MarkdownV2' })
+bot.command('start', ctx => {
+    ctx.reply(command.start.reply_text, command.start.options);
 });
 
 bot.command('help', ctx => {
-    ctx.reply(`/start: start bot\n/help: need help\n/build: to build source coden\n/template: get templates for different languages`, { parse_mode: 'MarkdownV2' });
+    ctx.reply(command.help.reply_text, command.help.options);
 });
 
 bot.command('build', ctx => {
-    ctx.reply(`Build under progress`);
+    ctx.reply(command.build.reply_text, command.build.options);
 });
 
 bot.command('template', ctx => {
-    ctx.reply(`Select your preferred language from the given languages`, {
-        parse_mode: 'MarkdownV2',
-        reply_markup: {
-            inline_keyboard: [
-                [
-                    { text: 'C', callback_data: 'C' },
-                    { text: 'C++', callback_data: 'CPP' }
-                ],
-                [
-                    { text: 'Java', callback_data: 'JAVA' },
-                    { text: 'Python', callback_data: 'PY' }
-                ]
-            ]
-        }
-    });
+    ctx.reply(command.template.reply_text, command.template.options);
 });
+
+// actions
 
 bot.action('C', ctx => {
     ctx.answerCbQuery();
-    ctx.reply(fs.readFileSync(path.join(__dirname, '..', 'data', 'template.c'), { encoding: 'utf-8' }));
+    ctx.reply(template('c'));
 });
 
 bot.action('CPP', ctx => {
     ctx.answerCbQuery();
-    ctx.reply(fs.readFileSync(path.join(__dirname, '..', 'data', 'template.cpp'), { encoding: 'utf-8' }));
+    ctx.reply(template('cpp'));
 });
 
 bot.action('JAVA', ctx => {
     ctx.answerCbQuery();
-    ctx.reply(fs.readFileSync(path.join(__dirname, '..', 'data', 'template.java'), { encoding: 'utf-8' }));
+    ctx.reply(template('java'));
 });
 
 bot.action('PY', ctx => {
     ctx.answerCbQuery();
-    ctx.reply(fs.readFileSync(path.join(__dirname, '..', 'data', 'template.py'), { encoding: 'utf-8' }));
+    ctx.reply(template('py'));
 });
 
 module.exports = bot;
