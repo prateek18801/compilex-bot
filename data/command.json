@@ -1,0 +1,38 @@
+{
+    "start": {
+        "reply_text": "This bot can help you build and run your source code\\. You can send the source file or type /help for more information\\.\n_Currently supports \\[C/C\\+\\+, Java, Python\\]_",
+        "options": {
+            "parse_mode": "MarkdownV2"
+        }
+    },
+    "help": {
+        "reply_text": "This bot can help you build and run your source code\\. You can send the source file or type /help for more information\\.\n_Currently supports \\[C/C\\+\\+, Java, Python\\]_",
+        "options": {
+            "parse_mode": "MarkdownV2"
+        }
+    },
+    "build": {
+        "reply_text": "Press F11 to build",
+        "options": {
+            "parse_mode": "MarkdownV2"
+        }
+    },
+    "template": {
+        "reply_text": "Select your preferred language from the given languages",
+        "options": {
+            "parse_mode": "MarkdownV2",
+            "reply_markup": {
+                "inline_keyboard": [
+                    [
+                        { "text": "C", "callback_data": "C" },
+                        { "text": "C++", "callback_data": "CPP" }
+                    ],
+                    [
+                        { "text": "Java", "callback_data": "JAVA" },
+                        { "text": "Python", "callback_data": "PY" }
+                    ]
+                ]
+            }
+        }
+    }
+}
