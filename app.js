@@ -12,13 +12,15 @@ app.use('/', (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-    console.log(`Live on PORT:${process.env.PORT}`);
+    console.log(`Listening on PORT:${process.env.PORT}`);
     try {
         bot.launch();
-        console.log(`@CompilexBot Online`);
+        console.log('@CompilexBot live');
     } catch (err) {
-        console.error();
+        console.error('@CompilexBot startup failed');
     }
+    process.once('SIGINT', () => bot.stop('SIGINT'));
+    process.once('SIGTERM', () => bot.stop('SIGTERM'));
 });
 
 
